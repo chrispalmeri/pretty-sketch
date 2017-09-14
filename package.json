@@ -1,14 +1,8 @@
 {
-  "name": "pretty-sketch",
-  "version": "1.0.0",
-  "description": "Canvas graph paper and drafting tools",
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chrispalmeri/pretty-sketch.git"
+  "private": true,
+  "scripts": {
+    "build": "rollup -c"
   },
-  "author": "Chris Palmeri",
-  "license": "MIT",
   "dependencies": {
     "rollup": "^0.49.3"
   }

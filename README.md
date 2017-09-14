@@ -6,6 +6,6 @@ Clone this repository and navigate to it from the command line
 
 Run `npm install`
 
-Then `rollup -c`
+Then `npm run build`
 
-Output will be in the `dist` folder
+That will generate `dist/bundle.js` from `src`
