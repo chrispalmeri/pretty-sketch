@@ -1,8 +1,12 @@
 // src/index.js
-import foo from './foo.js';
 import cookie from './cookie.js';
-
-console.log(foo);
+import Canvas from './canvas.js';
 
 cookie.create('ratio',120/96,30);
-console.log(cookie.read('ratio'));
+
+var graph = new Canvas(document.getElementById("grid"));
+var drawing = new Canvas(document.getElementById("pencil"));
+
+drawing.refresh();
+
+console.log('We\'re cooking with gas now!');
