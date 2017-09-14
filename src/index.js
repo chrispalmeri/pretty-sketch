@@ -1,4 +1,4 @@
-// app/index.js
+// src/index.js
 import foo from './foo.js';
 import cookie from './cookie.js';
 

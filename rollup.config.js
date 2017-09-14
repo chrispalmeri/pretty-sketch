@@ -1,8 +1,8 @@
 // rollup.config.js
 export default {
-  input: 'app/index.js',
+  input: 'src/index.js',
   output: {
-    file: 'bin/bundle.js',
+    file: 'dist/bundle.js',
     format: 'cjs'
   }
 };

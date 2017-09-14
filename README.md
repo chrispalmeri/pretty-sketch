@@ -8,4 +8,4 @@ Run `npm install`
 
 Then `rollup -c`
 
-Output will be in the `bin` folder
+Output will be in the `dist` folder
