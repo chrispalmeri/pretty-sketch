@@ -1,8 +1,15 @@
 // rollup.config.js
+import copy from 'rollup-plugin-copy';
+
 export default {
-  input: 'src/index.js',
+  input: 'src/js/index.js',
   output: {
-    file: 'dist/bundle.js',
+    file: 'build/js/bundle.js',
     format: 'cjs'
-  }
+  },
+  plugins: [
+    copy({
+      'src/index.htm': 'build/index.htm'
+    })
+  ]
 };

@@ -8,4 +8,6 @@ Run `npm install`
 
 Then `npm run build`
 
-That will generate `dist/bundle.js` from `src`
+That will create a `build` directory containing the app
+
+Make your changes in `src` and then `npm run build` again
