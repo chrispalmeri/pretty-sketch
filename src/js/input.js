@@ -12,8 +12,7 @@ export default new function() {
   this.move = e => {
     this.x = e.clientX;
     this.y = e.clientY;
-    refresh.refresh(); // this seems like it should be in canvas not input
-    // this should require cursor (cursor.move) which requires canvas (canvas.refresh)
+    refresh.refresh();
   }
 
   this.wheel = e => {
@@ -22,7 +21,7 @@ export default new function() {
     } else {
       this.zoom = this.zoom * 1.1;
     }
-    refresh.refresh(); // yeah cause this requires canvas code - I think - should it be a callback?
+    refresh.refresh();
     e.preventDefault();
   }
 

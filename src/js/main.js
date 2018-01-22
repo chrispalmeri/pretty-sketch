@@ -14,13 +14,12 @@ window.addEventListener("load", function() {
   debug.enable();
   noise.enable();
 
-  //input.enable();
   canvas.element.addEventListener("mousemove", input.move);
   canvas.element.addEventListener("wheel", input.wheel);
   canvas.element.addEventListener("mousedown", input.down);
   canvas.element.addEventListener("mouseup", input.up);
   
-  cursor.enable(); // only one that doesn't disable gracefully
+  cursor.enable();
   canvas.element.addEventListener("mouseenter", cursor.show);
   canvas.element.addEventListener("mouseleave", cursor.hide);
 
@@ -30,9 +29,3 @@ window.addEventListener("load", function() {
 window.addEventListener("resize", function() {
   refresh.refresh();
 });
-
-// add touch
-
-  // probably have to move cursor to the top periodically
-  // shit you probably need a whole move to bottom mechanic
-  // for covered items if things are hoverable/deletable
