@@ -2,14 +2,15 @@
 import copy from 'rollup-plugin-copy';
 
 export default {
-  input: 'src/js/index.js',
+  input: 'src/js/main.js',
   output: {
-    file: 'build/js/bundle.js',
+    file: 'dist/js/bundle.js',
     format: 'cjs'
   },
   plugins: [
     copy({
-      'src/index.htm': 'build/index.htm'
+      'src/index.html': 'dist/index.html',
+      'src/css/main.css': 'dist/css/bundle.css'
     })
   ]
 };
