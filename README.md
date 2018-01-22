@@ -8,6 +8,6 @@ Run `npm install`
 
 Then `npm run build`
 
-That will create a `build` directory containing the app
+That will create a `dist` directory containing the app
 
 Make your changes in `src` and then `npm run build` again
