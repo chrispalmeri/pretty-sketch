@@ -4,6 +4,7 @@ import canvas from './canvas.js';
 import input from './input.js';
 import cursor from './cursor.js';
 import noise from './noise.js';
+import pattern from './pattern.js';
 import debug from './debug.js';
 import refresh from './refresh.js';
 
@@ -12,6 +13,7 @@ window.addEventListener("load", function() {
   document.querySelector('#sketch').appendChild(debug.element);
 
   debug.enable();
+  pattern.enable();
   noise.enable();
 
   canvas.element.addEventListener("mousemove", input.move);

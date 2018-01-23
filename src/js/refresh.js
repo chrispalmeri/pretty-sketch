@@ -6,6 +6,7 @@ import cursor from './cursor.js';
 import debug from './debug.js';
 import view from './view.js';
 import last from './last.js';
+import pattern from './pattern.js';
 
 export default new function() {
   this.refresh = function() {
@@ -31,7 +32,12 @@ export default new function() {
         view.y = view.y + (oldY - newY);
       }
       
-      canvas.element.setAttribute("viewBox", view.x + ' ' + view.y + ' ' + canvas.width/input.zoom + " " + canvas.height/input.zoom);
+      canvas.element.setAttribute('viewBox', view.x + ' ' + view.y + ' ' + canvas.width/input.zoom + ' ' + canvas.height/input.zoom);
+      pattern.element.setAttribute('x', view.x);
+      pattern.element.setAttribute('y', view.y);
+      pattern.element.setAttribute('width', canvas.width/input.zoom);
+      pattern.element.setAttribute('height', canvas.height/input.zoom);
+
       cursor.move(
         ((input.x - canvas.left) / input.zoom) + view.x,
         ((input.y - canvas.top) / input.zoom) + view.y
