@@ -17,6 +17,9 @@ export default new function() {
       circle.setAttribute('cx', noise[i].x);
       circle.setAttribute('cy', noise[i].y);
       circle.setAttribute('r', noise[i].r);
+      circle.setAttribute('fill', 'transparent');
+      circle.setAttribute('stroke-width', 1);
+      circle.setAttribute('stroke', '#000');
       canvas.element.appendChild(circle);
     }
   }

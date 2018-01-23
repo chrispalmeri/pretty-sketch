@@ -7,6 +7,8 @@ export default new function() {
     this.element = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     this.element.setAttribute('id', 'cursor');
     this.element.setAttribute('r', 2);
+    this.element.setAttribute('fill', '#f00');
+    this.element.setAttribute('stroke-width', 0);
     canvas.element.appendChild(this.element);
   }
   this.show = e => {

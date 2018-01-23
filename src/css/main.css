@@ -8,17 +8,7 @@
   display: block;
   background: #999;
 }
-#sketch svg * {
-  fill: transparent;
-  stroke-width: 1;
-  stroke: rgb(0,0,0)
-}
-#sketch svg *:hover {
-  stroke-width: 3
-}
 #sketch svg #cursor {
-  fill: #f00;
-  stroke-width: 0;
   display: none;
   pointer-events: none;
 }
