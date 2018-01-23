@@ -1,4 +1,5 @@
 // src/cookie.js
+
 export default new function() {
   this.create = function(name,value,days) {
     if (days) {

@@ -6,7 +6,7 @@ import cursor from './cursor.js';
 import noise from './noise.js';
 import pattern from './pattern.js';
 import debug from './debug.js';
-import refresh from './refresh.js';
+import view from './view.js';
 
 window.addEventListener("load", function() {
   document.querySelector('#sketch').appendChild(canvas.element);
@@ -25,9 +25,9 @@ window.addEventListener("load", function() {
   canvas.element.addEventListener("mouseenter", cursor.show);
   canvas.element.addEventListener("mouseleave", cursor.hide);
 
-  refresh.refresh();
+  view.refresh();
 });
 
 window.addEventListener("resize", function() {
-  refresh.refresh();
+  view.refresh();
 });

@@ -1,7 +1,7 @@
 // src/input.js
 
 import canvas from './canvas.js';
-import refresh from './refresh.js';
+import view from './view.js';
 
 export default new function() {
   this.x = 0;
@@ -12,7 +12,7 @@ export default new function() {
   this.move = e => {
     this.x = e.clientX;
     this.y = e.clientY;
-    refresh.refresh();
+    view.refresh();
   }
 
   this.wheel = e => {
@@ -21,13 +21,14 @@ export default new function() {
     } else {
       this.zoom = this.zoom * 1.1;
     }
-    refresh.refresh();
+    view.refresh();
     e.preventDefault();
   }
 
   this.down = e => {
     if(e.button === 1) {
       this.pan = true;
+      view.refresh();
       e.preventDefault();
     }
   }
@@ -35,6 +36,7 @@ export default new function() {
   this.up = e => {
     if(e.button === 1) {
       this.pan = false;
+      view.refresh();
     }
   }
 }
