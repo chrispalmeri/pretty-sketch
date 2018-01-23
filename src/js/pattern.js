@@ -15,7 +15,7 @@ export default new function() {
     pattern.setAttribute('patternUnits', 'userSpaceOnUse');
 
     var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    g.setAttribute('stroke-width', 1);
+    g.setAttribute('stroke-width', 0.5);
     g.setAttribute('stroke', '#00f');
     g.setAttribute('transform', 'translate(-0.5, -0.5)');
     pattern.appendChild(g);
@@ -28,6 +28,7 @@ export default new function() {
       horizontal.setAttribute('y1', (24 * i) + 12);
       horizontal.setAttribute('x2', 97);
       horizontal.setAttribute('y2', (24 * i) + 12);
+      if(i === 0) { horizontal.setAttribute('stroke-width', 1.2); }
       g.appendChild(horizontal);
 
       var vertical = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -35,6 +36,7 @@ export default new function() {
       vertical.setAttribute('y1', 0);
       vertical.setAttribute('x2', (24 * i) + 12);
       vertical.setAttribute('y2', 97);
+      if(i === 0) { vertical.setAttribute('stroke-width', 1.2); }
       g.appendChild(vertical);
     }
 
