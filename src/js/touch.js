@@ -11,23 +11,22 @@ export default new function() {
     canvas.element.addEventListener("touchstart", e => {
       this.recalc(e);
       cursor.show();
-      if(e.touches.length > 1) {
-        input.pan = true; // I think this beats the refresh and pins center at the first touch
-      }
+      input.pan = false
+      // should hide cursor if not exactly 1 touch
       e.preventDefault();
     });
     canvas.element.addEventListener("touchmove", e => {
       this.recalc(e);
-      if(e.touches.length > 1 && last.touches > 1) {
+      if(e.touches.length > 1 && last.touches === e.touches.length) {
+        input.pan = true;
         input.zoom = last.zoom * (input.z / last.z);
       }
       e.preventDefault();
     });
     canvas.element.addEventListener("touchend", e => {
-      //this.recalc(e);
-      if(e.touches.length < 2) {
-        input.pan = false;
-      }
+      //this.recalc(e); // divide by 0 stuff
+      // maybe recalc and refresh should be seperate
+      input.pan = false;
       if(e.touches.length < 1) {
         cursor.hide();
       }
