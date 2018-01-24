@@ -3,5 +3,7 @@
 export default {
   x: 0,
   y: 0,
-  zoom: 1
+  z: 0,
+  zoom: 1,
+  touches: 0
 }

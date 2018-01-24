@@ -6,8 +6,10 @@ import view from './view.js';
 export default new function() {
   this.x = 0;
   this.y = 0;
+  this.z = 0;
   this.pan = false;
   this.zoom = 1;
+  this.touches = 0;
 
   this.move = e => {
     this.x = e.clientX;

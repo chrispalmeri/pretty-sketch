@@ -47,7 +47,9 @@ export default new function() {
       
       last.x = input.x;
       last.y = input.y;
+      last.z = input.z;
       last.zoom = input.zoom;
+      last.touches = input.touches;
       
       debug.log({
         input: input,
