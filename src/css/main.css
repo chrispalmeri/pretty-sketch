@@ -1,6 +1,6 @@
 #sketch {
   position: relative;
-  cursor: none;
+  /*cursor: none;*/
 }
 #sketch svg {
   width: 100%;

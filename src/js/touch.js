@@ -10,9 +10,12 @@ export default new function() {
   this.enable = function() {
     canvas.element.addEventListener("touchstart", e => {
       this.recalc(e);
-      cursor.show();
+      if(e.touches.length === 1) {
+        cursor.show();
+      } else {
+        cursor.hide();
+      }
       input.pan = false
-      // should hide cursor if not exactly 1 touch
       e.preventDefault();
     });
     canvas.element.addEventListener("touchmove", e => {
@@ -21,14 +24,16 @@ export default new function() {
         input.pan = true;
         input.zoom = last.zoom * (input.z / last.z);
       }
+      // ordering? maybe recalc and refresh should be seperate
       e.preventDefault();
     });
     canvas.element.addEventListener("touchend", e => {
-      //this.recalc(e); // divide by 0 stuff
-      // maybe recalc and refresh should be seperate
+      //this.recalc(e); // divide by 0 stuff, could leave 'last' in a weird spot
       input.pan = false;
-      if(e.touches.length < 1) {
-        cursor.hide();
+      if(e.touches.length === 1) {
+        cursor.show();
+      } else {
+        cursor.hide(); // still flashes in the center sometimes, frame lag?
       }
       e.preventDefault();
     });
