@@ -1,6 +1,7 @@
 // src/pattern.js
 
 import canvas from './canvas.js';
+import element from './element.js';
 
 export default new function() {
   this.size = 96;
@@ -8,50 +9,63 @@ export default new function() {
 
   this.enable = function() {
     // refactor to enable changing on the fly
-    var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-    var pattern = document.createElementNS("http://www.w3.org/2000/svg", "pattern");
+    var defs = element.create('defs', {
+      parent: canvas.element
+    });
 
     var space = this.size / this.division;
     var half = space / 2;
 
-    pattern.setAttribute('id', 'pattern');
-    pattern.setAttribute('x', -(half + 0.5));
-    pattern.setAttribute('y', -(half + 0.5));
-    pattern.setAttribute('width', this.size);
-    pattern.setAttribute('height', this.size);
-    pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+    var pattern = element.create('pattern', {
+      parent: defs,
+      attributes: {
+        id: 'pattern',
+        x: -(half + 0.5),
+        y: -(half + 0.5),
+        width: this.size,
+        height: this.size,
+        patternUnits: 'userSpaceOnUse'
+      }
+    });
 
-    var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    g.setAttribute('stroke-width', 0.2);
-    g.setAttribute('stroke', '#00f');
-    g.setAttribute('transform', 'translate(-0.5, -0.5)');
-    pattern.appendChild(g);
-
-    // stroke width 1/96 * 100
+    var g = element.create('g', {
+      parent: pattern,
+      attributes: {
+        'stroke-width': 0.2,
+        stroke: '#00f',
+        transform: 'translate(-0.5, -0.5)'
+      }
+    });
 
     for (var i = 0; i < this.division; i += 1) {
-      var horizontal = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      horizontal.setAttribute('x1', 0);
-      horizontal.setAttribute('y1', (space * i) + half);
-      horizontal.setAttribute('x2', this.size + 1);
-      horizontal.setAttribute('y2', (space * i) + half);
-      if(i === 0) { horizontal.setAttribute('stroke-width', 0.8); }
-      g.appendChild(horizontal);
+      element.create('line', {
+        parent: g,
+        attributes: {
+          x1: 0,
+          y1: (space * i) + half,
+          x2: this.size + 1,
+          y2: (space * i) + half,
+          'stroke-width': i === 0 ? 0.8 : 0.2
+        }
+      });
 
-      var vertical = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      vertical.setAttribute('x1', (space * i) + half);
-      vertical.setAttribute('y1', 0);
-      vertical.setAttribute('x2', (space * i) + half);
-      vertical.setAttribute('y2', this.size + 1);
-      if(i === 0) { vertical.setAttribute('stroke-width', 0.8); }
-      g.appendChild(vertical);
+      element.create('line', {
+        parent: g,
+        attributes: {
+          x1: (space * i) + half,
+          y1: 0,
+          x2: (space * i) + half,
+          y2: this.size + 1,
+          'stroke-width': i === 0 ? 0.8 : 0.2
+        }
+      });
     }
 
-    defs.appendChild(pattern);
-    canvas.element.appendChild(defs);
-
-    this.element = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    this.element.setAttribute('fill', 'url(#pattern)');
-    canvas.element.appendChild(this.element);
+    this.element = element.create('rect', {
+      parent: canvas.element,
+      attributes: {
+        fill: 'url(#pattern)'
+      }
+    });
   }
 }
