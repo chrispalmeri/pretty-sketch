@@ -1,7 +1,7 @@
 // src/view.js
 
 import canvas from './canvas.js';
-import input from './input.js';
+import input from './controls/input.js';
 import cursor from './cursor.js';
 import debug from './debug.js';
 import last from './last.js';

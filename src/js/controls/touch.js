@@ -1,15 +1,16 @@
-// src/touch.js
+// src/controls/touch.js
 
-import canvas from './canvas.js';
+import canvas from './../canvas.js';
 import input from './input.js';
-import cursor from './cursor.js';
-import last from './last.js';
-import view from './view.js';
+import cursor from './../cursor.js';
+import last from './../last.js';
+import view from './../view.js';
 
 export default new function() {
   this.enable = function() {
     canvas.element.addEventListener("touchstart", function(e) {
       this.touch(e);
+      e.preventDefault();
     }.bind(this));
     canvas.element.addEventListener("touchmove", function(e) {
       this.recalc(e);
@@ -22,6 +23,7 @@ export default new function() {
     }.bind(this));
     canvas.element.addEventListener("touchend", function(e) {
       this.touch(e);
+      e.preventDefault();
     }.bind(this));
   }
   
@@ -34,7 +36,6 @@ export default new function() {
       cursor.hide();
     }
     view.refresh();
-    e.preventDefault();
   }
 
   this.recalc = function(e) {
