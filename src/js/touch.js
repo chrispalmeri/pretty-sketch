@@ -9,14 +9,7 @@ import view from './view.js';
 export default new function() {
   this.enable = function() {
     canvas.element.addEventListener("touchstart", e => {
-      this.recalc(e);
-      if(e.touches.length === 1) {
-        cursor.show();
-      } else {
-        cursor.hide();
-      }
-      input.pan = false
-      e.preventDefault();
+      this.touch(e);
     });
     canvas.element.addEventListener("touchmove", e => {
       this.recalc(e);
@@ -24,19 +17,24 @@ export default new function() {
         input.pan = true;
         input.zoom = last.zoom * (input.z / last.z);
       }
-      // ordering? maybe recalc and refresh should be seperate
+      view.refresh();
       e.preventDefault();
     });
     canvas.element.addEventListener("touchend", e => {
-      //this.recalc(e); // divide by 0 stuff, could leave 'last' in a weird spot
-      input.pan = false;
-      if(e.touches.length === 1) {
-        cursor.show();
-      } else {
-        cursor.hide(); // still flashes in the center sometimes, frame lag?
-      }
-      e.preventDefault();
+      this.touch(e);
     });
+  }
+  
+  this.touch = function(e) {
+    this.recalc(e);
+    input.pan = false;
+    if(e.touches.length === 1) {
+      cursor.show();
+    } else {
+      cursor.hide();
+    }
+    view.refresh();
+    e.preventDefault();
   }
 
   this.recalc = function(e) {
@@ -44,25 +42,26 @@ export default new function() {
     this.y = 0;
     this.z = 0;
 
-    for(var i = 0; i < e.touches.length; i++) {
-      this.x = this.x + e.touches[i].clientX;
-      this.y = this.y + e.touches[i].clientY;
+    if (e.touches.length > 0) {
+      for(var i = 0; i < e.touches.length; i++) {
+        this.x = this.x + e.touches[i].clientX;
+        this.y = this.y + e.touches[i].clientY;
+      }
+      this.x = this.x / e.touches.length;
+      this.y = this.y / e.touches.length;
+      
+      for(var i = 0; i < e.touches.length; i++) {
+        var a = this.x - e.touches[i].clientX;
+        var b = this.y - e.touches[i].clientY;
+        var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        this.z = this.z + c;
+      }
+      this.z = this.z / e.touches.length;
     }
-    this.x = this.x / e.touches.length;
-    this.y = this.y / e.touches.length;
-    
-    for(var i = 0; i < e.touches.length; i++) {
-      var a = this.x - e.touches[i].clientX;
-      var b = this.y - e.touches[i].clientY;
-      var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
-      this.z = this.z + c;
-    }
-    this.z = this.z / e.touches.length;
 
     input.x = this.x;
     input.y = this.y;
     input.z = this.z;
     input.touches = e.touches.length;
-    view.refresh();
   }
 }
