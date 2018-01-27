@@ -12,13 +12,13 @@ export default new function() {
   this.touches = 0;
 
   this.enable = function() {
-    canvas.element.addEventListener('mousemove', e => {
+    canvas.element.addEventListener('mousemove', function(e) {
       this.x = e.clientX;
       this.y = e.clientY;
       view.refresh();
-    });
+    }.bind(this));
   
-    canvas.element.addEventListener('wheel', e => {
+    canvas.element.addEventListener('wheel', function(e) {
       if (e.deltaY > 0) {
         this.zoom = this.zoom / 1.1;
       } else {
@@ -26,21 +26,21 @@ export default new function() {
       }
       view.refresh();
       e.preventDefault();
-    });
+    }.bind(this));
   
-    canvas.element.addEventListener('mousedown', e => {
+    canvas.element.addEventListener('mousedown', function(e) {
       if(e.button === 1) {
         this.pan = true;
         view.refresh();
         e.preventDefault();
       }
-    });
+    }.bind(this));
     
-    canvas.element.addEventListener('mouseup', e => {
+    canvas.element.addEventListener('mouseup', function(e) {
       if(e.button === 1) {
         this.pan = false;
         view.refresh();
       }
-    });
+    }.bind(this));
   }
 }

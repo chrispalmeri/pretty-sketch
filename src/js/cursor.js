@@ -15,12 +15,12 @@ export default new function() {
       }
     });
     
-    canvas.element.addEventListener("mouseenter", e => {
+    canvas.element.addEventListener("mouseenter", function() {
       this.show();
-    });
-    canvas.element.addEventListener("mouseleave", e => {
+    }.bind(this));
+    canvas.element.addEventListener("mouseleave", function() {
       this.hide();
-    });
+    }.bind(this));
   }
   this.show = function() {
     this.element.style.display = 'block';

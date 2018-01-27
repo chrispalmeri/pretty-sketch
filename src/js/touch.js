@@ -8,10 +8,10 @@ import view from './view.js';
 
 export default new function() {
   this.enable = function() {
-    canvas.element.addEventListener("touchstart", e => {
+    canvas.element.addEventListener("touchstart", function(e) {
       this.touch(e);
-    });
-    canvas.element.addEventListener("touchmove", e => {
+    }.bind(this));
+    canvas.element.addEventListener("touchmove", function(e) {
       this.recalc(e);
       if(e.touches.length > 1 && last.touches === e.touches.length) {
         input.pan = true;
@@ -19,10 +19,10 @@ export default new function() {
       }
       view.refresh();
       e.preventDefault();
-    });
-    canvas.element.addEventListener("touchend", e => {
+    }.bind(this));
+    canvas.element.addEventListener("touchend", function(e) {
       this.touch(e);
-    });
+    }.bind(this));
   }
   
   this.touch = function(e) {

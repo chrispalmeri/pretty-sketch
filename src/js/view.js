@@ -12,7 +12,7 @@ export default new function() {
   this.y = -0.5;
 
   this.refresh = function() {
-    window.requestAnimationFrame(e => {
+    window.requestAnimationFrame(function() {
       canvas.recalc();
       
       if(input.pan) {
@@ -55,6 +55,6 @@ export default new function() {
         input: input,
         view: this
       });
-    });
+    }.bind(this));
   }
 }
