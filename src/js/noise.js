@@ -1,5 +1,6 @@
 // src/noise.js
 
+import element from './element.js';
 import canvas from './canvas.js';
 
 export default new function() {
@@ -13,14 +14,17 @@ export default new function() {
       });
     }
     for(var i = 0; i < noise.length; i++) {
-      var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute('cx', noise[i].x);
-      circle.setAttribute('cy', noise[i].y);
-      circle.setAttribute('r', noise[i].r);
-      circle.setAttribute('fill', 'transparent');
-      circle.setAttribute('stroke-width', 1);
-      circle.setAttribute('stroke', '#000');
-      canvas.element.appendChild(circle);
+      element.create('circle', {
+        parent: canvas.element,
+        attributes: {
+          cx: noise[i].x,
+          cy: noise[i].y,
+          r: noise[i].r,
+          fill: 'transparent',
+          'stroke-width': 1,
+          stroke: '#000'
+        }
+      });
     }
   }
 }

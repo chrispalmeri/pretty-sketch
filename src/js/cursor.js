@@ -1,15 +1,19 @@
 // src/cursor.js
 
+import element from './element.js';
 import canvas from './canvas.js';
 
 export default new function() {
   this.enable = function() {
-    this.element = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    this.element.setAttribute('id', 'cursor');
-    this.element.setAttribute('r', 2);
-    this.element.setAttribute('fill', '#f00');
-    this.element.setAttribute('stroke-width', 0);
-    canvas.element.appendChild(this.element);
+    this.element = element.create('circle', {
+      parent: canvas.element,
+      attributes: {
+        id: 'cursor',
+        r: 2,
+        fill: '#f00',
+        'stroke-width': 0
+      }
+    });
   }
   this.show = e => {
     this.element.style.display = 'block';

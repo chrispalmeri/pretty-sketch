@@ -1,7 +1,9 @@
 // src/canvas.js
 
+import element from './element.js';
+
 export default new function() {
-  this.element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  this.element = element.create('svg');
   this.recalc = function() {
     this.width = this.element.getBoundingClientRect().width;
     this.height = this.element.getBoundingClientRect().height;

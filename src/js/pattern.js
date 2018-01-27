@@ -1,7 +1,7 @@
 // src/pattern.js
 
-import canvas from './canvas.js';
 import element from './element.js';
+import canvas from './canvas.js';
 
 export default new function() {
   this.size = 96;
