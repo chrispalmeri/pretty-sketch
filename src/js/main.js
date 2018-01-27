@@ -17,16 +17,9 @@ window.addEventListener("load", function() {
   pattern.enable();
   noise.enable();
 
-  canvas.element.addEventListener("mousemove", input.move);
-  canvas.element.addEventListener("wheel", input.wheel);
-  canvas.element.addEventListener("mousedown", input.down);
-  canvas.element.addEventListener("mouseup", input.up);
-  
-  cursor.enable();
-  canvas.element.addEventListener("mouseenter", cursor.show);
-  canvas.element.addEventListener("mouseleave", cursor.hide);
-
+  input.enable();
   touch.enable();
+  cursor.enable();
 
   view.refresh();
 });

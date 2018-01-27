@@ -14,11 +14,18 @@ export default new function() {
         'stroke-width': 0
       }
     });
+    
+    canvas.element.addEventListener("mouseenter", e => {
+      this.show();
+    });
+    canvas.element.addEventListener("mouseleave", e => {
+      this.hide();
+    });
   }
-  this.show = e => {
+  this.show = function() {
     this.element.style.display = 'block';
   }
-  this.hide = e => {
+  this.hide = function() {
     this.element.style.display = 'none';
   }
   this.move = function(x, y) {
