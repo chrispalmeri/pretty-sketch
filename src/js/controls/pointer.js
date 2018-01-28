@@ -10,7 +10,7 @@ export default new function() {
   this.touches = [];
 
   this.enable = function() {
-    canvas.element.addEventListener("pointerdown", function(e) {
+    canvas.element.addEventListener("pointerenter", function(e) {
       this.recalc(e);
       touch.touch({touches: this.touches});
       e.preventDefault();
@@ -27,7 +27,7 @@ export default new function() {
       e.preventDefault();
     }.bind(this));
     
-    canvas.element.addEventListener("pointerup", function(e) {
+    canvas.element.addEventListener("pointerleave", function(e) {
       var point = {
         id: e.pointerId,
         clientX: e.clientX,
@@ -43,14 +43,23 @@ export default new function() {
       e.preventDefault();
     }.bind(this));
 
-    // would like pointerout to hide cursor
-    // but it fires when you mouse over any element
+    canvas.element.addEventListener('pointerdown', function(e) {
+      if(e.button === 1) {
+        input.pan = true;
+        view.refresh();
+        e.preventDefault();
+      }
+    }.bind(this));
+    
+    canvas.element.addEventListener('pointerup', function(e) {
+      if(e.button === 1) {
+        input.pan = false;
+        view.refresh();
+      }
+    }.bind(this));
 
-    // middle click pan is not implemented for pointer yet
-    // actually all clicks, maybe because they constitute pointerup
-
-    // cursor flashes after zoom and when re-entering screen
-    // maybe a timing issue cause you are piggy-backing on touch
+    // cursor flashes after zoom
+    // probably cause cursor display change is outside the animation loop
 
     // chrome is using pointer too now
     // two finger tap is left click in chrome
