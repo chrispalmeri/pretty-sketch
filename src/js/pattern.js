@@ -28,37 +28,69 @@ export default new function() {
       }
     });
 
-    var g = element.create('g', {
-      parent: pattern,
-      attributes: {
-        'stroke-width': 0.2,
-        stroke: '#00f',
-        transform: 'translate(-0.5, -0.5)'
+    if(window.chrome && window.chrome.webstore) {
+      var g = element.create('g', {
+        parent: pattern,
+        attributes: {
+          fill: '#00f',
+          transform: 'translate(-0.5, -0.5)'
+        }
+      });
+  
+      for (var i = 0; i < this.division; i += 1) {
+        element.create('rect', {
+          parent: g,
+          attributes: {
+            x: 0,
+            y: (space * i) + half - (i === 0 ? 0.4 : 0.1),
+            width: this.size + 1,
+            height: i === 0 ? 0.8 : 0.2
+          }
+        });
+  
+        element.create('rect', {
+          parent: g,
+          attributes: {
+            x: (space * i) + half - (i === 0 ? 0.4 : 0.1),
+            y: 0,
+            height: this.size + 1,
+            width: i === 0 ? 0.8 : 0.2
+          }
+        });
       }
-    });
-
-    for (var i = 0; i < this.division; i += 1) {
-      element.create('line', {
-        parent: g,
+    } else {
+      var g = element.create('g', {
+        parent: pattern,
         attributes: {
-          x1: 0,
-          y1: (space * i) + half,
-          x2: this.size + 1,
-          y2: (space * i) + half,
-          'stroke-width': i === 0 ? 0.8 : 0.2
+          'stroke-width': 0.2,
+          stroke: '#00f',
+          transform: 'translate(-0.5, -0.5)'
         }
       });
-
-      element.create('line', {
-        parent: g,
-        attributes: {
-          x1: (space * i) + half,
-          y1: 0,
-          x2: (space * i) + half,
-          y2: this.size + 1,
-          'stroke-width': i === 0 ? 0.8 : 0.2
-        }
-      });
+  
+      for (var i = 0; i < this.division; i += 1) {
+        element.create('line', {
+          parent: g,
+          attributes: {
+            x1: 0,
+            y1: (space * i) + half,
+            x2: this.size + 1,
+            y2: (space * i) + half,
+            'stroke-width': i === 0 ? 0.8 : 0.2
+          }
+        });
+  
+        element.create('line', {
+          parent: g,
+          attributes: {
+            x1: (space * i) + half,
+            y1: 0,
+            x2: (space * i) + half,
+            y2: this.size + 1,
+            'stroke-width': i === 0 ? 0.8 : 0.2
+          }
+        });
+      }
     }
 
     this.element = element.create('rect', {
