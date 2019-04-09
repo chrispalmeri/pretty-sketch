@@ -14,6 +14,6 @@ export default new function() {
       }
       view.refresh();
       e.preventDefault();
-    }.bind(this));
+    });
   }
 }

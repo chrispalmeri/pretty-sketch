@@ -49,14 +49,14 @@ export default new function() {
         view.refresh();
         e.preventDefault();
       }
-    }.bind(this));
+    });
     
     svg.element.addEventListener('pointerup', function(e) {
       if(e.button === 1) {
         input.pan = false;
         view.refresh();
       }
-    }.bind(this));
+    });
 
     // cursor flashes after zoom
     // probably cause cursor display change is outside the animation loop

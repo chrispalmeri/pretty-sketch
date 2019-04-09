@@ -10,7 +10,7 @@ export default new function() {
       input.x = e.clientX;
       input.y = e.clientY;
       view.refresh();
-    }.bind(this));
+    });
   
     svg.element.addEventListener('mousedown', function(e) {
       if(e.button === 1) {
@@ -18,13 +18,13 @@ export default new function() {
         view.refresh();
         e.preventDefault();
       }
-    }.bind(this));
+    });
     
     svg.element.addEventListener('mouseup', function(e) {
       if(e.button === 1) {
         input.pan = false;
         view.refresh();
       }
-    }.bind(this));
+    });
   }
 }
