@@ -1,6 +1,6 @@
 // src/controls/pointer.js
 
-import canvas from './../canvas.js';
+import svg from './../svg.js';
 import touch from './touch.js';
 import input from './input.js';
 import last from './../last.js';
@@ -10,13 +10,13 @@ export default new function() {
   this.touches = [];
 
   this.enable = function() {
-    canvas.element.addEventListener("pointerenter", function(e) {
+    svg.element.addEventListener("pointerenter", function(e) {
       this.recalc(e);
       touch.touch({touches: this.touches});
       e.preventDefault();
     }.bind(this));
     
-    canvas.element.addEventListener("pointermove", function(e) {
+    svg.element.addEventListener("pointermove", function(e) {
       this.recalc(e);
       touch.recalc({touches: this.touches});
       if(this.touches.length > 1 && last.touches === this.touches.length) {
@@ -27,7 +27,7 @@ export default new function() {
       e.preventDefault();
     }.bind(this));
     
-    canvas.element.addEventListener("pointerleave", function(e) {
+    svg.element.addEventListener("pointerleave", function(e) {
       var point = {
         id: e.pointerId,
         clientX: e.clientX,
@@ -43,7 +43,7 @@ export default new function() {
       e.preventDefault();
     }.bind(this));
 
-    canvas.element.addEventListener('pointerdown', function(e) {
+    svg.element.addEventListener('pointerdown', function(e) {
       if(e.button === 1) {
         input.pan = true;
         view.refresh();
@@ -51,7 +51,7 @@ export default new function() {
       }
     }.bind(this));
     
-    canvas.element.addEventListener('pointerup', function(e) {
+    svg.element.addEventListener('pointerup', function(e) {
       if(e.button === 1) {
         input.pan = false;
         view.refresh();

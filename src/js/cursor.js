@@ -1,12 +1,12 @@
 // src/cursor.js
 
 import element from './element.js';
-import canvas from './canvas.js';
+import svg from './svg.js';
 
 export default new function() {
   this.enable = function() {
     this.element = element.create('circle', {
-      parent: canvas.element,
+      parent: svg.element,
       attributes: {
         id: 'cursor',
         r: 2,
@@ -15,10 +15,10 @@ export default new function() {
       }
     });
     
-    canvas.element.addEventListener("mouseenter", function() {
+    svg.element.addEventListener("mouseenter", function() {
       this.show();
     }.bind(this));
-    canvas.element.addEventListener("mouseleave", function() {
+    svg.element.addEventListener("mouseleave", function() {
       this.hide();
     }.bind(this));
   }

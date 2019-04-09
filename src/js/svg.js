@@ -1,4 +1,4 @@
-// src/canvas.js
+// src/svg.js
 
 import element from './element.js';
 

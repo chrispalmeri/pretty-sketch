@@ -1,7 +1,7 @@
 // src/pattern.js
 
 import element from './element.js';
-import canvas from './canvas.js';
+import svg from './svg.js';
 
 export default new function() {
   this.size = 96;
@@ -10,7 +10,7 @@ export default new function() {
   this.enable = function() {
     // refactor to enable changing on the fly
     var defs = element.create('defs', {
-      parent: canvas.element
+      parent: svg.element
     });
 
     var space = this.size / this.division;
@@ -94,7 +94,7 @@ export default new function() {
     }
 
     this.element = element.create('rect', {
-      parent: canvas.element,
+      parent: svg.element,
       attributes: {
         fill: 'url(#pattern)'
       }

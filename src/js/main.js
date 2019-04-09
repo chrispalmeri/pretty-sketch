@@ -1,6 +1,6 @@
 // src/main.js
 
-import canvas from './canvas.js';
+import svg from './svg.js';
 import input from './controls/input.js';
 import cursor from './cursor.js';
 import noise from './noise.js';
@@ -9,7 +9,7 @@ import debug from './debug.js';
 import view from './view.js';
 
 window.addEventListener("load", function() {
-  document.querySelector('#sketch').appendChild(canvas.element);
+  document.querySelector('#sketch').appendChild(svg.element);
   document.querySelector('#sketch').appendChild(debug.element);
 
   debug.enable();

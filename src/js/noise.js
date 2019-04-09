@@ -1,7 +1,7 @@
 // src/noise.js
 
 import element from './element.js';
-import canvas from './canvas.js';
+import svg from './svg.js';
 
 export default new function() {
   this.enable = function() {
@@ -15,7 +15,7 @@ export default new function() {
     }
     for(var i = 0; i < noise.length; i++) {
       element.create('circle', {
-        parent: canvas.element,
+        parent: svg.element,
         attributes: {
           cx: noise[i].x,
           cy: noise[i].y,
